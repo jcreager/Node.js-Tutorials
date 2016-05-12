@@ -1,7 +1,2 @@
-var fs = require('fs')
-var file = fs.readFileSync(process.argv[2])
-console.log(file.toString().split('\n').length - 1)
-
-console.log(fs.readFileSync(process.argv[2]).toString().split('\n').length - 1)
-
+//demonstrates how solution can be done in a single line.
 console.log(require('fs').readFileSync(process.argv[2]).toString().split('\n').length - 1)
