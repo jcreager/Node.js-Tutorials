@@ -8,9 +8,11 @@ http.createServer(function (request, response) {
   if (request.method === 'POST') {
     // write request status and content type to resposne head
     response.writeHead(200, {'Content-Type': 'text/plain'})
-    // pipe request to response with through2-map
+    // stream request to through2-map with pipe()
     request.pipe(map(function (chunk) {
+      // convert request to uppercase string
       return chunk.toString().toUpperCase()
+      // stream result to response with pipe()
     })).pipe(response)
   } else {
     // write method not allowed error to response header if method not POST
