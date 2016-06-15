@@ -21,7 +21,7 @@ var parseQuery = function (url) {
       return parseTime(new Date(url.query.iso))
     case '/api/unixtime':
       return unixTime(new Date(url.query.iso))
-    default: response.writeHead(404)
+    default: return 'please enter a valid endpoint url'
   }
 }
 
@@ -30,6 +30,9 @@ http.createServer(function (request, response) {
     response.writeHead(200, {'Content-Type': 'application/json'})
     url = url.parse(request.url, true)
     response.end(JSON.stringify(parseQuery(url)))
+  } else {
+    response.writeHead(404)
+    response.end()
   }
 }).listen(+port, function () {
   console.log('Server listening on http://localhost:%s', port)
