@@ -31,7 +31,7 @@ http.createServer(function (request, response) {
     url = url.parse(request.url, true)
     response.end(JSON.stringify(parseQuery(url)))
   } else {
-    response.writeHead(404)
+    response.writeHead(405)
     response.end()
   }
 }).listen(+port, function () {
